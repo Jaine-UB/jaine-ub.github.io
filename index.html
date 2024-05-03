@@ -24,7 +24,7 @@
 
 </nav>    <!-- end nav-bar -->
 
-<div id="ticketsApp">
+<div id="ticketApp">
 
      <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
           
@@ -45,7 +45,7 @@
               </tr>
          </table>
   
-</div>   <!-- end gpaApp -->
+</div>   <!-- end ticketApp -->
 </div>   <!-- end class= 'container' -->
 
 <script>
@@ -53,7 +53,7 @@
             data() {     // returns an object of data
                 return {
                     tickets: [],           // array to hold tickets data
-		    showTable: True
+		    
                 }
             },
             created() {      // section executes as page loads
@@ -67,7 +67,7 @@
             }
           })
       
-      app.mount('#ticketsApp')   //in which div to mount the vue app
+      app.mount('#ticketApp')   //in which div to mount the vue app
 		  
 
 </script>
