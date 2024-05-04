@@ -53,7 +53,7 @@
             data() {     // returns an object of data
                 return {
                     violations: [],           // array to hold tickets data
-		    25overspeeders [],
+		    filter [],
                 }
             },
             created() {      // section executes as page loads
@@ -66,7 +66,7 @@
                 }
                 getByOverSpeed() {
                     this.showtable = true
-                    this.25overspeeders = this.violations.filter((ticket) => ticket.getByOverSpeed == this.getByOverSpeed);
+                    this.filter = this.tickets1.filter((ticket) => ticket.actual_speed - ticket.posted_speed >= 25);
                 },
             }
           })
