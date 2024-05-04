@@ -1,77 +1,68 @@
 <!DOCTYPE html>
-<html><head><title>speeding tickets</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" 
-integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" 
-integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
- <script src="https://unpkg.com/vue@next"></script> 
-
+<html lang="en">
+<head>
+    <title>Speeding Tickets</title>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
 </head>
 <body>
-
 <div class="container">
-<nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand">Speeding Tickets</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">All Tickets</a></li>
+                <li><a href="25over.html">25mph or over</a></li>
+            </ul>
+        </div>
+    </nav> <!-- end Nav-bar -->
 
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Our Website</a>
-    </div>
-    <div>
-       <ul class="nav navbar-nav">
-           <li class="active"><a href="index.html">All Tickets</a></li>
-           <li><a href="25over.html">25mph or move over</a></li>
-       </ul>
-    </div>
-
-</nav>    <!-- end nav-bar -->
-
-<div id="violationsApp">
-
-     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
-          
-          <table class="table table-bordered table-striped">
-              <tr>
-                  <th>Ticket ID</th>
-                  <th>Time</th>
-                  <th>Posted Speed</th>
-                  <th>MPH Over</th>
-                  <th>Violator Sex</th>
-              </tr>
-              <tr v-for = "ticket in violations">
-                  <td>{{ticket.tid}}</td>
-                  <td>{{ticket.stop_time}}</td>
-                  <td>{{ticket.posted_speed}}</td>
-                  <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
-                  <td>{{ticket.violator_sex}}</td>
-              </tr>
-         </table>
-  
-</div>   <!-- end ticketApp -->
-</div>   <!-- end class= 'container' -->
+    <div id="ticketApp">
+        <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Ticket ID</th>
+                <th>Time</th>
+                <th>Posted Speed</th>
+                <th>MPH Over</th>
+                <th>Violator Sex</th>
+            </tr>
+            <tr v-for="ticket in tickets">
+                <td>{{ ticket.tid }}</td>
+                <td>{{ ticket.stop_time }}</td>
+                <td>{{ ticket.posted_speed }}</td>
+                <td>{{ ticket.actual_speed - ticket.posted_speed }}</td>
+                <td>{{ ticket.violator_sex }}</td>
+            </tr>
+        </table>
+    </div> <!-- end ticketApp -->
+</div> <!-- end class='container' -->
 
 <script>
-       let app = Vue.createApp({
-            data() {     // returns an object of data
-                return {
-                    violations: [],           // array to hold tickets data
-		    
-                }
-            },
-            created() {      // section executes as page loads
-                this.getData()  // load json data as page loads
-            },
-            methods: {    // ajax request
-                async getData() {
-                    const response = await fetch('tickets1.json')
-                    this.violations = await response.json()   
-                },
+    let app = Vue.createApp({
+        data() {  // returns an object of data
+            return {
+                tickets: [], // array to hold ticket data
             }
-          })
-      
-      app.mount('#violationsApp')   //in which div to mount the vue app
-		  
+        },
+        methods: { // ajax request
+            async getData() {
+                const response = await fetch('tickets1.json');
+                this.tickets = await response.json();
+                
+            },
+        },
+        created() {
+            this.getData(); // calling the method to get data when the component is mounted
+        }
+    })
 
+    app.mount('#ticketApp'); // in which div to mount the vue app
 </script>
-</body></html>
+</body>
+</html>
