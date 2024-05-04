@@ -65,8 +65,7 @@
                     this.tickets_1 = await response.json() 
 		    this.getFiltered()
 		},
-		    {
-	       
+		      
            getFiltered(){
                     this.filtered = this.tickets_1.filter((ticket) => ticket.actual_speed - ticket.posted_speed >= 25);
                 },
