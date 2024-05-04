@@ -63,9 +63,7 @@
                 async getData() {
                     const response = await fetch('tickets1.json')
                     this.violations1 = await response.json() 
-                }
-                getByOverSpeed() {
-                    this.showtable = true
+           
                     this.filter = this.violations1.filter((ticket) => ticket.actual_speed - ticket.posted_speed >= 25);
                 },
             }
