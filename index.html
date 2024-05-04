@@ -62,7 +62,8 @@
             methods: {    // ajax request
                 async getData() {
                     const response = await fetch('tickets1.json')
-                    this.violations = await response.json()                
+                    this.violations = await response.json()   
+			showTable = true;
                 },
             }
           })
