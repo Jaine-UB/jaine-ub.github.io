@@ -24,9 +24,9 @@
 
 </nav>    <!-- end nav-bar -->
 
-<div id="violationsApp">
+<div id="ticketApp">
 
-     <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
+     <h2>25mph or more over the speed limit</h2>
           
           <table class="table table-bordered table-striped">
               <tr>
@@ -52,7 +52,7 @@
        let app = Vue.createApp({
             data() {     // returns an object of data
                 return {
-                    violations1: [],           // array to hold tickets data
+                    tickets_1: [],           // array to hold tickets data
 		    filter [],
                 }
             },
@@ -62,14 +62,14 @@
             methods: {    // ajax request
                 async getData() {
                     const response = await fetch('tickets1.json')
-                    this.violations1 = await response.json() 
+                    this.tickets_1 = await response.json() 
            
-                    this.filter = this.violations1.filter((ticket) => ticket.actual_speed - ticket.posted_speed >= 25);
+                    this.filter = this.tickets_1.filter((ticket) => ticket.actual_speed - ticket.posted_speed >= 25);
                 },
             }
           })
       
-      app.mount('#violationsApp')   //in which div to mount the vue app
+      app.mount('#ticketApp')   //in which div to mount the vue app
 		  
 
 </script>
